@@ -1,0 +1,7 @@
+database:
+  dburl: "mongodb://0.0.0.0:27017"
+
+http_server:
+  address: "0.0.0.0:9092"
+  kafka_topic: "exchange.transaction"
+  kafka_group_id: "exchange.transaction"

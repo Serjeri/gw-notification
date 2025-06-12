@@ -2,6 +2,8 @@ module gw-notification
 
 go 1.24.3
 
+require gopkg.in/yaml.v3 v3.0.1
+
 require (
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/montanaflynn/stats v0.7.1 // indirect
