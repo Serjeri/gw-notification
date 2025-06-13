@@ -2,22 +2,23 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"gw-notification/domain/config"
 	mongodb "gw-notification/domain/database"
 	"gw-notification/domain/kafka"
 	"sync"
+	"github.com/gofiber/fiber/v2/log"
 )
 
 func main() {
 	cfg := config.MustLoad()
 
+	log.Info("start application")
 	var wg sync.WaitGroup
-	workers := 3
+	workers := 10
 
-	conn, err := mongodb.ConnectDB(cfg.Dburl)
+	conn, err := mongodb.ConnectDB(cfg.DbURL, cfg.DbName)
 	if err != nil {
-		fmt.Errorf("error connecting to MongoDB: %a", err)
+		log.Info("error connecting to MongoDB: %a", err)
 	}
 	defer conn.Client().Disconnect(context.Background())
 

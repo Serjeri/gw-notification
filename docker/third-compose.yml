@@ -1,12 +1,10 @@
 services:
-  app3:
+  notification:
     build:
       context: ..
       dockerfile: docker/Dockerfile
     volumes:
       - ../config:/config
-    ports:
-      - "5003:5003"
     restart: unless-stopped
     networks:
       - network
@@ -22,12 +20,9 @@ services:
       - network
 
   kafka:
-    image: confluentinc/cp-kafka:latest
+    image: confluentinc/cp-kafka:7.5.3
     depends_on:
       - zookeeper
-    ports:
-      - "9092:9092"
-      - "29093:29093"
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -52,10 +47,10 @@ services:
 
   mongodb:
     image: mongo:latest
-    ports:
-      - "27017:27017"
     volumes:
       - mongodb_data:/data/db
+    environment:
+      MONGO_LOG_LEVEL: "INFO"
     networks:
       - network
 

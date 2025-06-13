@@ -9,7 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func ConnectDB(dburl string) (*mongo.Database, error) {
+func ConnectDB(dburl string, dbname string) (*mongo.Database, error) {
     ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
     defer cancel()
 
@@ -23,5 +23,5 @@ func ConnectDB(dburl string) (*mongo.Database, error) {
         return nil, fmt.Errorf("failed to ping MongoDB: %w", err)
     }
 
-    return client.Database("taskdb"), nil
+    return client.Database(dbname), nil
 }

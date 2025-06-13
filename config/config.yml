@@ -1,7 +1,8 @@
 database:
-  dburl: "mongodb://0.0.0.0:27017"
+  dburl: "mongodb://mongodb:27017"
+  dbname: "exchange"
 
 http_server:
-  address: "0.0.0.0:9092"
+  address: "kafka:29092"
   kafka_topic: "exchange.transaction"
   kafka_group_id: "exchange.transaction"

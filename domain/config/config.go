@@ -12,7 +12,8 @@ type Config struct {
 }
 
 type Database struct {
-	Dburl string `yaml:"dburl"`
+    DbURL  string `yaml:"dburl" env-default:"mongodb://localhost:27017"`
+    DbName string `yaml:"dbname" env-default:"taskdb"`
 }
 
 type HTTPServer struct {
